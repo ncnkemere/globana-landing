@@ -25,7 +25,7 @@ export default function PrivacyPolicyPage() {
       body: (
         <>
           <p>
-            Globana (“<strong>Globana</strong>,” “<strong>we</strong>,” “
+            Globana (“<strong>Globana</strong>,” “<strong>we</strong>,” “{" "}
             <strong>our</strong>,” or “<strong>us</strong>”) is committed to
             protecting your personal data and maintaining transparency regarding
             how information is collected, used, processed, and shared when you
@@ -173,9 +173,7 @@ export default function PrivacyPolicyPage() {
             <li>Improve platform functionality</li>
             <li>Comply with regulatory obligations</li>
             <li>Send service notifications and updates</li>
-            <li>
-              Deliver optional promotional communications (where permitted)
-            </li>
+            <li>Deliver optional promotional communications (where permitted)</li>
           </ul>
         </>
       ),
@@ -228,9 +226,7 @@ export default function PrivacyPolicyPage() {
           </p>
 
           <h3>Business Transfers</h3>
-          <p>
-            If Globana undergoes merger, acquisition, or restructuring.
-          </p>
+          <p>If Globana undergoes merger, acquisition, or restructuring.</p>
 
           <p>
             All third-party providers are contractually required to safeguard
@@ -256,9 +252,7 @@ export default function PrivacyPolicyPage() {
       title: "10. Data Retention",
       body: (
         <>
-          <p>
-            Globana retains personal data only for as long as necessary to:
-          </p>
+          <p>Globana retains personal data only for as long as necessary to:</p>
           <ul>
             <li>provide services</li>
             <li>comply with legal obligations</li>
@@ -302,9 +296,7 @@ export default function PrivacyPolicyPage() {
       title: "12. Your Rights",
       body: (
         <>
-          <p>
-            Subject to applicable law, you may have the right to:
-          </p>
+          <p>Subject to applicable law, you may have the right to:</p>
           <ul>
             <li>access your data</li>
             <li>request correction</li>
@@ -313,9 +305,7 @@ export default function PrivacyPolicyPage() {
             <li>withdraw consent</li>
             <li>request a copy of your information</li>
           </ul>
-          <p>
-            Requests may be submitted using the contact information below.
-          </p>
+          <p>Requests may be submitted using the contact information below.</p>
           <p>
             <strong>Note:</strong> Certain financial records must be retained by
             regulated partners for compliance purposes and may not be deletable
@@ -374,9 +364,59 @@ export default function PrivacyPolicyPage() {
 
   return (
     <main style={styles.main}>
-      <div style={styles.container}>
+      {/* Typography fixes scoped to this page */}
+      <style jsx global>{`
+        .policyProse {
+          width: 100%;
+          max-width: 860px;
+          line-height: 1.75;
+        }
+
+        .policyProse p {
+          margin: 10px 0;
+        }
+
+        .policyProse ul,
+        .policyProse ol {
+          margin: 10px 0;
+          padding-left: 22px;
+        }
+
+        .policyProse li {
+          margin: 6px 0;
+        }
+
+        .policyProse h1 {
+          font-size: 32px;
+          margin: 0;
+          letter-spacing: -0.02em;
+        }
+
+        .policyProse h2 {
+          font-size: 20px;
+          margin: 22px 0 10px 0;
+          letter-spacing: -0.01em;
+        }
+
+        .policyProse h3 {
+          font-size: 16px;
+          margin: 16px 0 6px 0;
+        }
+
+        .policyToc ul {
+          list-style: none;
+          padding-left: 0;
+          margin: 0;
+        }
+
+        .policyToc li {
+          margin: 8px 0;
+        }
+      `}</style>
+
+      <div className="policyProse" style={styles.container}>
         <header style={styles.header}>
-          <h1 style={styles.h1}>Privacy Policy</h1>
+          <h1>Privacy Policy</h1>
           <p style={styles.meta}>
             <strong>Effective Date:</strong> {effectiveDate}
             <br />
@@ -384,17 +424,23 @@ export default function PrivacyPolicyPage() {
           </p>
         </header>
 
-        <nav aria-label="Table of contents" style={styles.toc}>
+        <nav
+          aria-label="Table of contents"
+          className="policyToc"
+          style={styles.toc}
+        >
           <h2 style={styles.h2}>Contents</h2>
-          <ol style={styles.ol}>
+
+          {/* UL avoids double-numbering since titles already include "1.", "2.", etc */}
+          <ul>
             {sections.map((s) => (
-              <li key={s.id} style={styles.li}>
+              <li key={s.id}>
                 <a href={`#${s.id}`} style={styles.link}>
                   {s.title}
                 </a>
               </li>
             ))}
-          </ol>
+          </ul>
         </nav>
 
         <section style={styles.sections}>
@@ -420,15 +466,9 @@ const styles: Record<string, React.CSSProperties> = {
   container: {
     width: "100%",
     maxWidth: 860,
-    lineHeight: 1.6,
   },
   header: {
     marginBottom: 24,
-  },
-  h1: {
-    fontSize: 32,
-    margin: 0,
-    letterSpacing: "-0.02em",
   },
   meta: {
     marginTop: 10,
@@ -444,13 +484,6 @@ const styles: Record<string, React.CSSProperties> = {
   h2: {
     fontSize: 18,
     margin: "0 0 10px 0",
-  },
-  ol: {
-    margin: 0,
-    paddingLeft: 18,
-  },
-  li: {
-    margin: "6px 0",
   },
   link: {
     textDecoration: "underline",
