@@ -3,6 +3,9 @@ export const metadata = {
   robots: { index: false, follow: true },
 };
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default function DeleteAccountPage({
   searchParams,
 }: {
