@@ -65,7 +65,7 @@ export default function DeleteAccountPage() {
 
         <h2 className="text-xl font-semibold mt-6">Need help?</h2>
         <p>
-          Email us at <a className="underline" href="mailto:support@globana.com">support@globana.com</a>.
+          Email us at <a className="underline" href="mailto:admin@encoholdings.com">admin@encoholdings.com</a>.
         </p>
       </section>
     </main>

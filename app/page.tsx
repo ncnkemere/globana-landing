@@ -99,10 +99,14 @@ export default function Home() {
                     </a>
                   </li>
                   <li>
-                    <span className="text-gray-400 cursor-default">Privacy Policy</span>
+                    <a href="#privacy-policy" className="hover:text-[#00BFA6] transition-colors">
+                      Privacy Policy
+                      </a>
                   </li>
                   <li>
-                    <span className="text-gray-400 cursor-default">Terms of Service</span>
+                    <a href="#terms-of-service" className="hover:text-[#00BFA6] transition-colors">
+                      Terms of Service
+                    </a>
                   </li>
                 </ul>
               </div>
