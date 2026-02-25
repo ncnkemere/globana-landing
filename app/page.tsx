@@ -99,12 +99,12 @@ export default function Home() {
                     </a>
                   </li>
                   <li>
-                    <a href="#privacy-policy" className="hover:text-[#00BFA6] transition-colors">
+                    <a href="privacy-policy" className="hover:text-[#00BFA6] transition-colors">
                       Privacy Policy
                       </a>
                   </li>
                   <li>
-                    <a href="#terms-of-service" className="hover:text-[#00BFA6] transition-colors">
+                    <a href="terms-of-service" className="hover:text-[#00BFA6] transition-colors">
                       Terms of Service
                     </a>
                   </li>
