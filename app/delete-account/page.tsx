@@ -1,17 +1,20 @@
+"use client";
+
+import { useMemo } from "react";
+import { useSearchParams } from "next/navigation";
+
 export const metadata = {
   title: "Delete Account",
   robots: { index: false, follow: true },
 };
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export default function DeleteAccountPage() {
+  const sp = useSearchParams();
 
-export default function DeleteAccountPage({
-  searchParams,
-}: {
-  searchParams?: { submitted?: string };
-}) {
-  const submitted = searchParams?.submitted === "1";
+  const submitted = useMemo(() => {
+    const v = sp.get("submitted");
+    return v === "1" || v === "true" || v === "yes";
+  }, [sp]);
 
   return (
     <main className="mx-auto max-w-3xl px-6 py-12">
