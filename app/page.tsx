@@ -110,7 +110,7 @@ export default function Home() {
                   </li>
                   <li>
                     <a href="delete-account" className="hover:text-[#00BFA6] transition-colors">
-                      Delete Account
+                      Delete My Data
                     </a>
                   </li>
                 </ul>
@@ -118,7 +118,7 @@ export default function Home() {
             </div>
 
             <div className="border-t border-gray-100 pt-8 text-center text-gray-500">
-              <p>© {new Date().getFullYear()} Globana Inc. All rights reserved.</p>
+              <p>© {new Date().getFullYear()} Globana App. All rights reserved.</p>
             </div>
           </div>
         </footer>
