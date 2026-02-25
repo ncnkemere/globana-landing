@@ -35,8 +35,8 @@ export default function TermsPage() {
 
   return (
     <main style={styles.main}>
-      {/* Typography + layout fixes scoped to this page */}
-      <style jsx global>{`
+      {/* Fix #1: plain <style> tag (no styled-jsx) */}
+      <style>{`
         .termsProse {
           width: 100%;
           max-width: 820px;
@@ -100,7 +100,6 @@ export default function TermsPage() {
           margin: 6px 0;
         }
 
-        /* Make anchor jumps land nicely (helps if you have sticky header/nav) */
         .termsProse section {
           scroll-margin-top: 96px;
         }
@@ -154,7 +153,8 @@ export default function TermsPage() {
             regulated partners.
           </p>
           <p>
-            Globana is <strong>not a bank, money transmitter, or deposit-holding institution</strong>.
+            Globana is{" "}
+            <strong>not a bank, money transmitter, or deposit-holding institution</strong>.
             Financial services accessible through the platform are provided by
             third-party financial institutions and partners that operate under
             their own regulatory licenses and terms.
@@ -251,7 +251,10 @@ export default function TermsPage() {
         <hr className="termsHr" />
 
         <Section id="termination" title="9. Suspension and Termination">
-          <p>Globana may suspend or terminate access to Services at any time if required to:</p>
+          <p>
+            Globana may suspend or terminate access to Services at any time if
+            required to:
+          </p>
           <ul>
             <li>comply with law or regulation</li>
             <li>protect users or partners</li>
@@ -314,7 +317,10 @@ export default function TermsPage() {
         <hr className="termsHr" />
 
         <Section id="disputes" title="15. Dispute Resolution">
-          <p>These Terms are governed by the laws of the State of Wyoming, United States.</p>
+          <p>
+            These Terms are governed by the laws of the State of Wyoming, United
+            States.
+          </p>
           <p>
             Any dispute shall be resolved through binding arbitration.
             Proceedings shall occur in the jurisdiction corresponding to your

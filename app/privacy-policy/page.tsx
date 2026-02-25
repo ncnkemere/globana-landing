@@ -342,7 +342,8 @@ export default function PrivacyPolicyPage() {
         <p>
           We may update this Privacy Policy periodically. Material updates will
           be communicated through in-app notifications, email, or website notice.
-          Continued use of the Services after updates constitutes acceptance.
+          Continued use of the Services constitutes acceptance of the updated
+          Terms.
         </p>
       ),
     },
@@ -364,8 +365,8 @@ export default function PrivacyPolicyPage() {
 
   return (
     <main style={styles.main}>
-      {/* Typography fixes scoped to this page */}
-      <style jsx global>{`
+      {/* Fix #1: plain <style> tag (no styled-jsx) */}
+      <style>{`
         .policyProse {
           width: 100%;
           max-width: 860px;
@@ -424,11 +425,7 @@ export default function PrivacyPolicyPage() {
           </p>
         </header>
 
-        <nav
-          aria-label="Table of contents"
-          className="policyToc"
-          style={styles.toc}
-        >
+        <nav aria-label="Table of contents" className="policyToc" style={styles.toc}>
           <h2 style={styles.h2}>Contents</h2>
 
           {/* UL avoids double-numbering since titles already include "1.", "2.", etc */}
