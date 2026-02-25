@@ -108,6 +108,11 @@ export default function Home() {
                       Terms of Service
                     </a>
                   </li>
+                  <li>
+                    <a href="delete-account" className="hover:text-[#00BFA6] transition-colors">
+                      Delete Account
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>
