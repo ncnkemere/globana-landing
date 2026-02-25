@@ -1,9 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-export const runtime = "nodejs"; // important: email SDKs need Node runtime
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+export const runtime = "nodejs";
 
 function escapeHtml(input: string) {
   return input
@@ -16,18 +14,27 @@ function escapeHtml(input: string) {
 
 export async function POST(req: Request) {
   try {
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      return NextResponse.json(
+        { ok: false, error: "RESEND_API_KEY is missing in environment variables" },
+        { status: 500 }
+      );
+    }
+
+    const resend = new Resend(apiKey);
+
     const formData = await req.formData();
     const email = String(formData.get("email") || "").trim();
     const details = String(formData.get("details") || "").trim();
 
     if (!email) {
-      return NextResponse.json(
-        { ok: false, error: "Email required" },
-        { status: 400 }
-      );
+      return NextResponse.json({ ok: false, error: "Email required" }, { status: 400 });
     }
 
-    const to = "nathankemere@gmail.com";
+    const to = "nathannkemere@gmail.com";
+
+    // IMPORTANT: Do NOT set this to a Gmail address. Use a Resend-managed sender or a verified domain sender.
     const from = process.env.DELETE_ACCOUNT_FROM || "onboarding@resend.dev";
 
     const submittedAt = new Date().toISOString();
@@ -53,33 +60,37 @@ export async function POST(req: Request) {
       </div>
     `.trim();
 
-    // Send email
-    const { error } = await resend.emails.send({
+    const result = await resend.emails.send({
       from,
       to,
       subject,
       html,
-      // optional: reply-to the user
-      replyTo: email,
+      replyTo: email, // so you can reply directly to the user
     });
 
-    if (error) {
-      console.error("Resend error:", error);
+    if (result.error) {
+      console.error("Resend send error:", result.error);
+
+      // Surface the real reason to you (during debugging)
       return NextResponse.json(
-        { ok: false, error: "Failed to send email" },
+        {
+          ok: false,
+          error: result.error.message || "Failed to send email",
+          from,
+          to,
+        },
         { status: 500 }
       );
     }
 
-    // Redirect after POST (important for form submissions)
     return NextResponse.redirect(
       new URL("/delete-account?submitted=1", req.url),
       { status: 303 }
     );
-  } catch (err) {
+  } catch (err: any) {
     console.error("Delete account route error:", err);
     return NextResponse.json(
-      { ok: false, error: "Unexpected server error" },
+      { ok: false, error: err?.message || "Unexpected server error" },
       { status: 500 }
     );
   }
