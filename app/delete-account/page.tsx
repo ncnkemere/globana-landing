@@ -3,11 +3,6 @@
 import { useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 
-export const metadata = {
-  title: "Delete Account",
-  robots: { index: false, follow: true },
-};
-
 export default function DeleteAccountPage() {
   const sp = useSearchParams();
 
